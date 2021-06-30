@@ -6,10 +6,11 @@
 #include "creator.hpp"
 #include "../loggers/console_logger.hpp"
 
+template <class T>
 class console_creator : public creator
 {
 public:
-   logger *getLogger() const override
+   logger<T> *getLogger() const override
    {
       return new console_logger();
    }

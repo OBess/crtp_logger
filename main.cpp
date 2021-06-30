@@ -10,14 +10,14 @@ int main()
 {
    
    // Test 1 - console logger
-   auto console_cr = std::make_unique<console_creator>();
+   auto console_cr = std::make_unique<console_creator<console_logger>>();
    auto console = console_cr->getLogger();
    console->Log("Start work");
    console->Log("Did something");
    console->Log("End work");
 
    // Test 2 - file logger
-   auto file_cr = std::make_unique<file_creator>("log.txt");
+   auto file_cr = std::make_unique<file_creator<file_logger>>("log.txt");
    auto file = file_cr->getLogger();
    file->Log("Start work");
    file->Log("Did something");

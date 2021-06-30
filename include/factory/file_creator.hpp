@@ -6,11 +6,12 @@
 #include "creator.hpp"
 #include "../loggers/file_logger.hpp"
 
+template <class T>
 class file_creator : public creator
 {
 public:
    file_creator(const std::string &file_path) : m_file_path(file_path) {}
-   logger *getLogger() const override
+   logger<T> *getLogger() const override
    {
       return new file_logger(m_file_path);
    }
