@@ -10,7 +10,7 @@
 // Custom
 #include "logger.hpp"
 
-class console_logger : public logger
+class console_logger : public logger<console_logger>
 {
 public:
    ~console_logger() = default;
@@ -22,9 +22,10 @@ private:
       std::cout << m_level++ << ", " << std::ctime(&time) << '[' << std::endl;
    }
 
-   void write(const std::string &message) override
+   template <typename... Args>
+   void write(Args &&...message) override
    {
-      std::cout << '\t' << message << std::endl;
+      std::cout << '\t' << ... << message << std::endl;
    }
 
    void close() override

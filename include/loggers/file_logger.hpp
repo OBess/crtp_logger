@@ -11,7 +11,7 @@
 // Custom
 #include "logger.hpp"
 
-class file_logger : public logger
+class file_logger : public logger<file_logger>
 {
 public:
    file_logger(const std::string &file_path) : m_file_path(file_path), m_level(1)
@@ -29,11 +29,12 @@ private:
    {
    }
 
-   void write(const std::string &message) override
+   template <typename... Args>
+   void write(Args &&...message) override
    {
       std::time_t time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
       file << m_level++ << ", " << std::ctime(&time) << '[' << std::endl;
-      file << '\t' << message << std::endl;
+      file << '\t' << ... << message << std::endl;
       file << ']' << std::endl;
    }
 
