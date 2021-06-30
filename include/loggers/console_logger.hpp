@@ -25,7 +25,7 @@ private:
    template <typename... Args>
    void write(Args &&...message)
    {
-      std::cout << '\t' << ... << message << std::endl;
+      std::cout << "\t" << ... << message << std::endl;
    }
 
    void close()

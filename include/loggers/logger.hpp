@@ -15,15 +15,15 @@ public:
    void Log(Args &&...message)
    {
       static_cast<T *>(this)->open();
-      static_cast<T *>(this)->write(std::forward<Args>(message));
+      static_cast<T *>(this)->write(std::forward<Args>(message)...);
       static_cast<T *>(this)->close();
    }
 
 protected:
-   void open() = 0;
+   void open(){};
    template <typename... Args>
-   void write(Args &&message) = 0;
-   void close() = 0;
+   void write(Args &&...message) {};
+   void close(){};
 };
 
 #endif //LOGGER_HPP
