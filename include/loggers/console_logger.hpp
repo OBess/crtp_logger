@@ -16,19 +16,19 @@ public:
    ~console_logger() = default;
 
 private:
-   void open() override
+   void open()
    {
       std::time_t time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
       std::cout << m_level++ << ", " << std::ctime(&time) << '[' << std::endl;
    }
 
    template <typename... Args>
-   void write(Args &&...message) override
+   void write(Args &&...message)
    {
       std::cout << '\t' << ... << message << std::endl;
    }
 
-   void close() override
+   void close()
    {
       std::cout << ']' << std::endl;
    }

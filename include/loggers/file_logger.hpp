@@ -25,12 +25,12 @@ public:
    };
 
 private:
-   void open() override
+   void open()
    {
    }
 
    template <typename... Args>
-   void write(Args &&...message) override
+   void write(Args &&...message)
    {
       std::time_t time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
       file << m_level++ << ", " << std::ctime(&time) << '[' << std::endl;
@@ -38,7 +38,7 @@ private:
       file << ']' << std::endl;
    }
 
-   void close() override
+   void close()
    {
       file.flush();
    }

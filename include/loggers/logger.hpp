@@ -20,10 +20,10 @@ public:
    }
 
 protected:
-   virtual void open() = 0;
+   void open() = 0;
    template <typename... Args>
-   virtual void write(Args &&message) = 0;
-   virtual void close() = 0;
+   void write(Args &&message) = 0;
+   void close() = 0;
 };
 
 #endif //LOGGER_HPP
