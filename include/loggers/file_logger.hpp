@@ -34,7 +34,7 @@ private:
    {
       std::time_t time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
       file << m_level++ << ", " << std::ctime(&time) << '[' << std::endl;
-      file << '\t' << ... << message << std::endl;
+      (file << '\t' << ... << message) << std::endl;
       file << ']' << std::endl;
    }
 
@@ -45,6 +45,9 @@ private:
 
    std::ofstream file;
    std::string m_file_path;
+
+   friend logger<file_logger>;
+
    int m_level;
 };
 
