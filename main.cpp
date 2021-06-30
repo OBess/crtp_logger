@@ -15,6 +15,8 @@ int main()
    console->Log("Start work");
    console->Log("Did something");
    console->Log("End work");
+   console->Log("Message ", "with ", "variability size of", "values", " and ", 'i', 'n', " this ", "text are ", 10, " values.");
+   console->Log(12, ' ', 3.5);
 
    // Test 2 - file logger
    auto file_cr = std::make_unique<file_creator<file_logger>>("log.txt");
@@ -22,6 +24,8 @@ int main()
    file->Log("Start work");
    file->Log("Did something");
    file->Log("End work");
+   file->Log("Message ", "with ", "variability size of", "values", " and ", 'i', 'n', " this ", "text are ", 10, " values.");
+   file->Log(12, ' ', 3.5);
 
    // Clear data
    delete console;
