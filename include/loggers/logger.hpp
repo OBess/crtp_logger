@@ -2,24 +2,27 @@
 #ifndef LOGGER_HPP
 #define LOGGER_HPP
 
-template <class Derived>
+// C++
+#include <utility>
+
+template <class T>
 class logger
 {
 public:
    virtual ~logger() = default;
 
-   template<typename ... Args>
-   void Log(const Args &message)
+   template <typename... Args>
+   void Log(Args &&...message)
    {
-      Derived->open();
-      Derived->write(message);
-      Derived->close();
+      static_cast<T *>(this)->open();
+      static_cast<T *>(this)->write(std::forward<Args>(message));
+      static_cast<T *>(this)->close();
    }
 
 protected:
    virtual void open() = 0;
-   template<typename ... Args>
-   virtual void write(const Args &message) = 0;
+   template <typename... Args>
+   virtual void write(Args &&message) = 0;
    virtual void close() = 0;
 };
 
